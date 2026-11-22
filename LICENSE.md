@@ -1,3 +1,6 @@
+---
+---
+
 # License
 
 ## Written content

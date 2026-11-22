@@ -13,6 +13,8 @@
 
 **You ship LLM features. Can you break them?**
 
+Read it as a site, with search and navigation: **[aredwan-xyz.github.io/cybersec-roadmap](https://aredwan-xyz.github.io/cybersec-roadmap/)**
+
 Most security roadmaps assume you want to become a SOC analyst or a penetration tester. This one is for people who already build with language models and want to learn how those systems fail, how to prove it in a lab, and how to fix it.
 
 In 13 weeks, at about 10 hours a week, you build three small apps, break them, harden them, and publish three pieces of work. The full beginner-to-expert cybersecurity roadmap is here too, for everything that comes before and after.

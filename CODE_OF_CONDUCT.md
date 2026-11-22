@@ -1,3 +1,6 @@
+---
+---
+
 # Code of conduct
 
 ## The standard

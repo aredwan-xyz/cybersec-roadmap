@@ -15,19 +15,19 @@ Tick items as they are finished. Log hours weekly; the plan's exit criteria depe
 
 | Week | Topic | Hours | Output done |
 |---|---|---|---|
-| 1 | Web security basics I | | [ ] |
-| 2 | Web security basics II and LLM primer | | [ ] |
-| 3 | LLM attack surface and direct prompt injection | | [ ] |
-| 4 | Indirect injection and output handling | | [ ] |
-| 5 | RAG, data and privacy attacks | | [ ] |
-| 6 | Agents, tools, memory and MCP | | [ ] |
-| 7 | Cloud identity and secrets | | [ ] |
-| 8 | Supply chain and automated red teaming | | [ ] |
-| 9 | Defences | | [ ] |
-| 10 | Threat modelling | | [ ] |
-| 11 | Monitoring, incident response, disclosure | | [ ] |
-| 12 | Governance and engagement basics | | [ ] |
-| 13 | Capstone and publish | | [ ] |
+| 1 | Web security basics I | | ☐ |
+| 2 | Web security basics II and LLM primer | | ☐ |
+| 3 | LLM attack surface and direct prompt injection | | ☐ |
+| 4 | Indirect injection and output handling | | ☐ |
+| 5 | RAG, data and privacy attacks | | ☐ |
+| 6 | Agents, tools, memory and MCP | | ☐ |
+| 7 | Cloud identity and secrets | | ☐ |
+| 8 | Supply chain and automated red teaming | | ☐ |
+| 9 | Defences | | ☐ |
+| 10 | Threat modelling | | ☐ |
+| 11 | Monitoring, incident response, disclosure | | ☐ |
+| 12 | Governance and engagement basics | | ☐ |
+| 13 | Capstone and publish | | ☐ |
 
 ### Published artifacts
 

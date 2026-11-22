@@ -27,6 +27,7 @@ _For the first 90 days on the AI security track, [ai-security-90-days/README.md]
 ## Stage 0: Setup and mindset (weeks 1–2)
 
 **Do**
+
 - Install VirtualBox, VMware or UTM (Apple Silicon). Create one Kali Linux VM and one Ubuntu VM.
 - Create accounts on TryHackMe, Hack The Box Academy, and PortSwigger Web Security Academy.
 - Start a notes system (Obsidian or plain Markdown in a git repo). Write down every command you learn and why it worked. This becomes your personal playbook and later your portfolio.
@@ -37,6 +38,7 @@ _For the first 90 days on the AI security track, [ai-security-90-days/README.md]
 - **Allocate the hours.** Put the weekly sessions in a calendar and write down what they displace.
 
 **Mindset**
+
 - Security is understanding how things work, then how they break. If you skip the "how it works" part, you become someone who runs tools without knowing what the output means.
 - Aim for 70% hands-on, 30% reading and video.
 - Being stuck for hours is the normal state. Try for 30–60 minutes before reading a walkthrough, then redo the box without it a week later.
@@ -48,6 +50,7 @@ _For the first 90 days on the AI security track, [ai-security-90-days/README.md]
 Most beginners skip this stage and stall later. Don't.
 
 ### Networking
+
 - OSI and TCP/IP models, IP addressing and subnetting, MAC vs IP, ARP
 - TCP vs UDP, the three-way handshake, ports
 - DNS, DHCP, HTTP/HTTPS, TLS, SSH, SMB, SMTP
@@ -56,6 +59,7 @@ Most beginners skip this stage and stall later. Don't.
 - **Resources:** Professor Messer Network+ videos (free), Cisco Networking Academy "Networking Basics" (free), TryHackMe "Pre Security" path
 
 ### Linux
+
 - File system, permissions, users and groups, processes, services, package managers
 - Bash: pipes, redirection, grep, find, awk, sed, cron
 - SSH, logs under `/var/log`, basic hardening
@@ -63,11 +67,13 @@ Most beginners skip this stage and stall later. Don't.
 - **Resources:** "Linux Basics for Hackers" (OccupyTheWeb), linuxjourney.com
 
 ### Windows and Active Directory
+
 - Registry, services, event logs, PowerShell basics, NTFS permissions
 - Active Directory: domains, users, groups, GPOs, Kerberos at a conceptual level
 - **Practice:** build a small AD lab (one domain controller, one workstation) from evaluation ISOs on an x86 machine, or use a hosted AD lab if your computer is ARM-based
 
 ### Programming
+
 - **Python** first: scripts that parse logs, call APIs, scan ports, automate boring tasks
 - **Bash** and a little **PowerShell**
 - Read-level understanding of **JavaScript** and **SQL** (essential for web security)
@@ -81,6 +87,7 @@ Most beginners skip this stage and stall later. Don't.
 ## Stage 2: Security fundamentals (months 4–6)
 
 ### Concepts
+
 - CIA triad, authentication vs authorization, least privilege, defence in depth, zero trust
 - Cryptography in practice: symmetric vs asymmetric, hashing, salting, digital signatures, certificates and PKI, what TLS actually protects
 - Threats: malware families, phishing and social engineering, ransomware, supply-chain attacks, insider threat
@@ -92,10 +99,12 @@ Most beginners skip this stage and stall later. Don't.
 - Professional practice: written authorization, scope, rules of engagement and responsible disclosure. Learn these before you ever touch a system that is not yours
 
 ### Certification
+
 - **CompTIA Security+** is the standard first cert and the most common HR filter for entry roles. Study with Professor Messer's free course plus practice exams.
 - Skip CEH unless a specific employer demands it. It is expensive and practitioners rate it poorly.
 
 ### Habit
+
 - Follow the field 15 minutes a day: Krebs on Security, The Hacker News, BleepingComputer, the Risky Business and Darknet Diaries podcasts. Read one real incident write-up a week (the DFIR Report is excellent) and map it to ATT&CK.
 
 **Checkpoint:** Security+ passed or passable, and you can read a breach post-mortem and explain each attacker step.
@@ -107,6 +116,7 @@ Most beginners skip this stage and stall later. Don't.
 Learn both sides before picking one. Attackers who understand detection are better attackers, and defenders who have attacked are better defenders.
 
 ### Offensive basics
+
 - Methodology: reconnaissance, scanning, enumeration, exploitation, privilege escalation, lateral movement, reporting
 - Tools: Nmap, Burp Suite, ffuf or Gobuster, Metasploit (understand what it does, don't depend on it), Hashcat and John, BloodHound, Impacket
 - Web: SQL injection, XSS, CSRF, SSRF, IDOR and broken access control, authentication flaws, file upload, deserialization
@@ -114,6 +124,7 @@ Learn both sides before picking one. Attackers who understand detection are bett
 - **Practice:** PortSwigger Web Security Academy (free, the best web training there is), TryHackMe "Jr Penetration Tester", Hack The Box easy machines, picoCTF
 
 ### Defensive basics
+
 - Log sources: Windows Event Logs, Sysmon, syslog, firewall, proxy, DNS, EDR telemetry
 - SIEM: write searches and detections in Splunk (free tier) or Elastic/Wazuh
 - Alert triage, incident response lifecycle (prepare, detect, contain, eradicate, recover, lessons learned)
@@ -123,12 +134,14 @@ Learn both sides before picking one. Attackers who understand detection are bett
 
 ### Cloud, containers and pipelines
 Most systems you will attack or defend run here, so this is core, not a specialization.
+
 - Cloud fundamentals in one provider (AWS or Azure): the shared responsibility model, identity and access management (users, roles, policies, least privilege), network controls, storage permissions, logging
 - Containers: how Docker images and containers work, image scanning, running as non-root, basic Kubernetes concepts
 - Pipelines: secrets handling, dependency and supply-chain risk, what CI/CD systems can reach, infrastructure as code
 - **Practice:** a free-tier cloud account with billing alerts set first; deliberately vulnerable cloud labs such as CloudGoat or flaws.cloud; audit the permissions of one thing you have deployed
 
 ### Capstone lab (do this; it is the best interview material you will have)
+
 1. Build an AD lab with a Wazuh or Elastic SIEM collecting logs.
 2. Attack it yourself (phish a user, escalate, move laterally).
 3. Find your own attack in the logs and write detections for it.
@@ -171,6 +184,7 @@ Pick one. You can change later; depth transfers.
 ## Stage 6: Expert (year 5+)
 
 Experts differ from seniors in output, not knowledge:
+
 - Original research: new techniques, CVEs with your name on them, tools others use
 - Conference talks (BSides first, then DEF CON, Black Hat, regional conferences)
 - Designing security programmes and architecture, not just operating them

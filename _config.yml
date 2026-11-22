@@ -1,0 +1,116 @@
+# GitHub Pages site configuration.
+# Page titles and navigation are set here, not in each file, so the Markdown
+# stays clean when read on GitHub.
+
+title: AI Security in 90 Days
+description: A builder's roadmap from first lab to published security assessment, plus a full beginner-to-expert cybersecurity roadmap.
+url: https://aredwan-xyz.github.io
+baseurl: /cybersec-roadmap
+
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+plugins:
+  - jekyll-remote-theme
+
+color_scheme: dark
+search_enabled: true
+heading_anchors: true
+mermaid:
+  version: "10.9.1"
+
+aux_links:
+  "View on GitHub":
+    - https://github.com/aredwan-xyz/cybersec-roadmap
+aux_links_new_tab: true
+
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: https://github.com/aredwan-xyz/cybersec-roadmap
+gh_edit_branch: main
+gh_edit_view_mode: tree
+
+footer_content: 'Written content licensed CC BY 4.0. Attack only systems you own or are authorized to test.'
+
+exclude:
+  - notes
+  - .github
+
+defaults:
+  # Linked from other pages but kept out of the sidebar
+  - scope: { path: "LICENSE.md" }
+    values: { layout: default, title: "License", nav_exclude: true }
+  - scope: { path: "CODE_OF_CONDUCT.md" }
+    values: { layout: default, title: "Code of Conduct", nav_exclude: true }
+
+  # Top level
+  - scope: { path: "README.md" }
+    values: { layout: default, title: "Home", nav_order: 1, permalink: "/" }
+  - scope: { path: "ai-security-90-days/README.md" }
+    values: { layout: default, title: "90-Day AI Security Plan", nav_order: 2, permalink: "/ai-security-90-days/" }
+  - scope: { path: "ROADMAP.md" }
+    values: { layout: default, title: "Beginner-to-Expert Roadmap", nav_order: 3 }
+  - scope: { path: "market/focus-2026.md" }
+    values: { layout: default, title: "Market Focus", nav_order: 4 }
+  - scope: { path: "resources.md" }
+    values: { layout: default, title: "Resource Library", nav_order: 5 }
+  - scope: { path: "PROGRESS.md" }
+    values: { layout: default, title: "Progress Tracker", nav_order: 10 }
+  - scope: { path: "docs/limitations.md" }
+    values: { layout: default, title: "Limits of This Roadmap", nav_order: 11 }
+  - scope: { path: "SECURITY.md" }
+    values: { layout: default, title: "Security and Scope", nav_order: 12 }
+  - scope: { path: "CONTRIBUTING.md" }
+    values: { layout: default, title: "Contributing", nav_order: 13 }
+
+  # Labs
+  - scope: { path: "labs/README.md" }
+    values: { layout: default, title: "Labs", nav_order: 6, has_children: true, permalink: "/labs/" }
+  - scope: { path: "labs/01-summarizer-injection/README.md" }
+    values: { layout: default, title: "Lab 01: Summarizer Injection", parent: "Labs", nav_order: 1, permalink: "/labs/01-summarizer-injection/" }
+  - scope: { path: "labs/02-rag-access-control/README.md" }
+    values: { layout: default, title: "Lab 02: RAG Access Control", parent: "Labs", nav_order: 2, permalink: "/labs/02-rag-access-control/" }
+  - scope: { path: "labs/03-agent-exfiltration/README.md" }
+    values: { layout: default, title: "Lab 03: Agent Exfiltration", parent: "Labs", nav_order: 3, permalink: "/labs/03-agent-exfiltration/" }
+
+  # Checklists
+  - scope: { path: "checklists/README.md" }
+    values: { layout: default, title: "Checklists", nav_order: 7, has_children: true, permalink: "/checklists/" }
+  - scope: { path: "checklists/llm-app-security-review.md" }
+    values: { layout: default, title: "LLM App Security Review", parent: "Checklists", nav_order: 1 }
+  - scope: { path: "checklists/agent-and-tool-security.md" }
+    values: { layout: default, title: "Agent and Tool Security", parent: "Checklists", nav_order: 2 }
+  - scope: { path: "checklists/ai-supply-chain.md" }
+    values: { layout: default, title: "AI Supply Chain", parent: "Checklists", nav_order: 3 }
+  - scope: { path: "checklists/web-app-basics.md" }
+    values: { layout: default, title: "Web App Basics", parent: "Checklists", nav_order: 4 }
+  - scope: { path: "checklists/home-lab-setup.md" }
+    values: { layout: default, title: "Home Lab Setup", parent: "Checklists", nav_order: 5 }
+
+  # Templates
+  - scope: { path: "templates/README.md" }
+    values: { layout: default, title: "Templates", nav_order: 8, has_children: true, permalink: "/templates/" }
+  - scope: { path: "templates/threat-model.md" }
+    values: { layout: default, title: "Threat Model", parent: "Templates", nav_order: 1 }
+  - scope: { path: "templates/findings-report.md" }
+    values: { layout: default, title: "Findings Report", parent: "Templates", nav_order: 2 }
+  - scope: { path: "templates/ai-security-assessment.md" }
+    values: { layout: default, title: "AI Security Assessment", parent: "Templates", nav_order: 3 }
+  - scope: { path: "templates/lab-writeup.md" }
+    values: { layout: default, title: "Lab Write-up", parent: "Templates", nav_order: 4 }
+  - scope: { path: "templates/scope-and-authorization.md" }
+    values: { layout: default, title: "Scope and Authorization", parent: "Templates", nav_order: 5 }
+  - scope: { path: "templates/job-posting-review.md" }
+    values: { layout: default, title: "Job Posting Review", parent: "Templates", nav_order: 6 }
+  - scope: { path: "templates/weekly-review.md" }
+    values: { layout: default, title: "Weekly Review", parent: "Templates", nav_order: 7 }
+
+  # Cheatsheets
+  - scope: { path: "cheatsheets/README.md" }
+    values: { layout: default, title: "Cheatsheets", nav_order: 9, has_children: true, permalink: "/cheatsheets/" }
+  - scope: { path: "cheatsheets/llm-attack-patterns.md" }
+    values: { layout: default, title: "LLM Attack Patterns", parent: "Cheatsheets", nav_order: 1 }
+  - scope: { path: "cheatsheets/web-vulnerabilities.md" }
+    values: { layout: default, title: "Web Vulnerabilities", parent: "Cheatsheets", nav_order: 2 }
+  - scope: { path: "cheatsheets/networking.md" }
+    values: { layout: default, title: "Networking", parent: "Cheatsheets", nav_order: 3 }
+  - scope: { path: "cheatsheets/linux.md" }
+    values: { layout: default, title: "Linux", parent: "Cheatsheets", nav_order: 4 }

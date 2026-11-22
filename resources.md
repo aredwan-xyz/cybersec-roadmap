@@ -37,6 +37,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 ## 3. Stage 1: IT foundations
 
 ### Networking
+
 - [Professor Messer Network+](https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/): free video course
 - [Cisco Networking Academy](https://www.netacad.com): free networking courses and Packet Tracer
 - [Wireshark](https://www.wireshark.org): packet capture and analysis
@@ -45,18 +46,21 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [How DNS works (comic)](https://howdns.works): a short visual explainer
 
 ### Linux and the command line
+
 - [OverTheWire wargames](https://overthewire.org/wargames/): Bandit first, then Natas (web) and Leviathan
 - [Linux Journey](https://linuxjourney.com): free structured Linux lessons
 - [explainshell](https://explainshell.com): paste a command, see what each part does
 - [The Linux Command Line (book, free online)](https://linuxcommand.org/tlcl.php)
 
 ### Windows and Active Directory
+
 - [Microsoft Learn](https://learn.microsoft.com/en-us/training/): free official courses on Windows, Azure and identity
 - [Sysinternals](https://learn.microsoft.com/en-us/sysinternals/): the essential Windows inspection tools, including Sysmon
 - [Game of Active Directory (GOAD)](https://github.com/Orange-Cyberdefense/GOAD): a ready-made vulnerable AD lab
 - [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter): time-limited Windows Server and client images (x86)
 
 ### Programming
+
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com): free online
 - [CS50](https://cs50.harvard.edu/x/): Harvard's free introduction to computer science
 - [Nand2Tetris](https://www.nand2tetris.org): build a computer from logic gates; deep understanding of how machines work
@@ -76,6 +80,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 ## 5. Stage 3: hands-on core
 
 ### Offensive practice
+
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security): all topics, with labs
 - [Hack The Box](https://www.hackthebox.com): machines and challenges
 - [Hack The Box Academy](https://academy.hackthebox.com): structured modules, some free
@@ -89,6 +94,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [CTFtime](https://ctftime.org): calendar of CTF competitions and teams
 
 ### Defensive practice
+
 - [CyberDefenders](https://cyberdefenders.org): blue-team investigation labs
 - [Blue Team Labs Online](https://blueteamlabs.online): investigation challenges
 - [LetsDefend](https://letsdefend.io): simulated SOC work
@@ -97,6 +103,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [Boss of the SOC datasets](https://github.com/splunk/botsv3): Splunk's public investigation datasets
 
 ### Reference while practising
+
 - [HackTricks](https://book.hacktricks.wiki): a large field manual of techniques
 - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings): payloads and bypasses by vulnerability class
 - [GTFOBins](https://gtfobins.github.io): Unix binaries that can be abused for privilege escalation
@@ -120,6 +127,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 ## 7. AI security
 
 ### Core reading
+
 - [OWASP GenAI Security Project](https://genai.owasp.org): home of the LLM Top 10 and the agentic security work
 - [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/)
 - [MITRE ATLAS](https://atlas.mitre.org): attacker tactics and techniques against AI systems
@@ -133,6 +141,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [Anthropic research](https://www.anthropic.com/research): includes work on agent safety and prompt injection
 
 ### Practice
+
 - [Gandalf by Lakera](https://gandalf.lakera.ai): direct prompt injection levels
 - [PortSwigger: Web LLM attacks](https://portswigger.net/web-security/llm-attacks): labs
 - [Microsoft AI Red Teaming Playground Labs](https://github.com/microsoft/AI-Red-Teaming-Playground-Labs)
@@ -142,6 +151,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [huntr](https://huntr.com): bug bounty for AI and ML software; read the disclosures
 
 ### Tools
+
 - [garak](https://github.com/NVIDIA/garak): LLM vulnerability scanner
 - [PyRIT](https://github.com/Azure/PyRIT): Microsoft's red-teaming framework for generative AI
 - [promptfoo red teaming](https://www.promptfoo.dev/docs/red-team/): test suites for LLM apps
@@ -150,6 +160,7 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 - [Adversarial Robustness Toolbox](https://github.com/Trusted-AI/adversarial-robustness-toolbox): classical adversarial ML attacks and defences
 
 ### Governance
+
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [NIST AI 600-1: Generative AI Profile (PDF)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
 - [EU AI Act explorer](https://artificialintelligenceact.eu): unofficial but readable
@@ -224,11 +235,13 @@ Pricing changes often. "Free" and "free tier" below reflect what I know, not a c
 ## 11. Books
 
 Free online:
+
 - [Security Engineering](https://www.cl.cam.ac.uk/~rja14/book.html), Ross Anderson
 - [The Linux Command Line](https://linuxcommand.org/tlcl.php), William Shotts
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com), Al Sweigart
 
 Paid:
+
 - [Linux Basics for Hackers](https://nostarch.com/linuxbasicsforhackers), OccupyTheWeb
 - [Penetration Testing](https://nostarch.com/pentesting), Georgia Weidman
 - [Practical Malware Analysis](https://nostarch.com/malware), Sikorski and Honig
@@ -261,6 +274,7 @@ Check the current exam version, price and prerequisites on each page.
 ## 13. News, community, bug bounty and disclosure
 
 ### Daily and weekly reading
+
 - [Krebs on Security](https://krebsonsecurity.com)
 - [BleepingComputer](https://www.bleepingcomputer.com)
 - [The Hacker News](https://thehackernews.com)
@@ -271,15 +285,18 @@ Check the current exam version, price and prerequisites on each page.
 - [Google Project Zero](https://googleprojectzero.blogspot.com)
 
 ### Podcasts
+
 - [Risky Business](https://risky.biz)
 - [Darknet Diaries](https://darknetdiaries.com)
 
 ### Community
+
 - [OWASP chapters](https://owasp.org/chapters/): free local meetings
 - [Security BSides](http://www.securitybsides.com): low-cost community conferences
 - [DEF CON](https://defcon.org): including its AI Village
 
 ### Bug bounty and disclosure
+
 - [HackerOne](https://www.hackerone.com)
 - [Bugcrowd](https://www.bugcrowd.com)
 - [Intigriti](https://www.intigriti.com)
@@ -287,6 +304,7 @@ Check the current exam version, price and prerequisites on each page.
 - [security.txt](https://securitytxt.org): the standard file for telling researchers how to report to you
 
 ### Career
+
 - [roadmap.sh: Cyber Security](https://roadmap.sh/cyber-security): a community roadmap to compare against this one
 - [NICE Workforce Framework](https://niccs.cisa.gov/workforce-development/nice-framework): standard definitions of security work roles
 - [Job Bank: Cybersecurity Analyst outlook](https://www.jobbank.gc.ca/marketreport/outlook-occupation/296427/ca)

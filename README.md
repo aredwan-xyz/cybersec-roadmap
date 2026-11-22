@@ -43,7 +43,7 @@ flowchart TB
     A["Access to<br/>private data"] --> X
     B["Exposure to<br/>untrusted content"] --> X
     C["A way to send<br/>data out"] --> X
-    X{{"All three together"}} --> Y["An injected page, file or email<br/>can make the model leak your data"]
+    X{"All three together"} --> Y["An injected page, file or email<br/>can make the model leak your data"]
     X -.-> Z["Remove or gate one of the three"]
 ```
 

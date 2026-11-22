@@ -46,22 +46,26 @@ Review this plan at day 45 and day 90. The field moves quickly; replace anything
 ## Phase 1: Foundations (weeks 1–4)
 
 ### Week 1: Web security basics I (access and identity)
+
 - **Learn:** HTTP in depth, sessions and cookies, authentication vs authorization, trust boundaries, the OWASP Top 10 (web) at overview level.
 - **Do:** install Burp Suite Community. Complete PortSwigger Web Security Academy apprentice labs for authentication and access control.
 - **Output:** notes repo started; one page on "what trust boundaries are" in your own words.
 
 ### Week 2: Web security basics II (injection) and an LLM primer
+
 - **Learn (web):** SQL injection, cross-site scripting, server-side request forgery, and why they share one root cause: data treated as instructions.
 - **Learn (LLM primer, 2 hours):** tokens and context windows, system vs user vs tool messages, embeddings and retrieval, fine-tuning vs prompting, how tool calling works. The aim is to know what the model actually receives.
 - **Do:** PortSwigger apprentice labs for SQL injection, XSS and SSRF. Log the full raw request for one LLM call in an app you built and label each part.
 - **Output:** the labelled request, in your notes.
 
 ### Week 3: The LLM application as an attack surface, and direct prompt injection
+
 - **Learn:** read the OWASP Top 10 for LLM Applications end to end. Read Simon Willison's writing on prompt injection, including the "lethal trifecta" (private data, untrusted content, a way to send data out). System prompt extraction, role-play and encoding tricks, multi-turn attacks, why filters fail.
 - **Do:** draw the data-flow diagram of one LLM app you have built, marking every place untrusted text enters the context and every action the model can trigger. Complete Lakera's Gandalf (as far as you can) and the PortSwigger "Web LLM attacks" labs.
 - **Output:** the annotated diagram and a log of which techniques worked and why.
 
 ### Week 4: Indirect prompt injection and insecure output handling
+
 - **Learn:** injection through web pages, documents, emails and tool results; injection through images, audio and files (multimodal); data exfiltration through rendered Markdown images and links; LLM output flowing into SQL, shell or HTML. Read several of Johann Rehberger's "Embrace The Red" case studies.
 - **Do:** build a tiny chatbot that summarizes a web page. Plant instructions in a page you control and make the bot leak a fake secret. Repeat once with instructions hidden in an image or file. Then fix it.
 - **Output (publish, artifact 1):** write-up of the attack and the fix. Send it to your reviewer.
@@ -73,21 +77,25 @@ Review this plan at day 45 and day 90. The field moves quickly; replace anything
 ## Phase 2: Attack depth (weeks 5–8)
 
 ### Week 5: RAG, data and privacy attacks
+
 - **Learn:** retrieval poisoning, cross-tenant leakage in vector stores, missing access control on retrieved documents, sensitive data in embeddings and logs, personal-data leakage from model outputs, membership inference and training-data poisoning at concept level.
 - **Do:** build a small RAG app with two fake users. Show user A reading user B's documents through the model. Fix it by enforcing permissions at retrieval, not in the prompt.
 - **Output:** before/after code in a repo.
 
 ### Week 6: Agents, tools, memory and MCP
+
 - **Learn:** excessive agency, confused-deputy problems, tool-description poisoning, over-broad credentials, unsafe auto-approval, cross-agent injection, poisoning of long-term agent memory, and the specific risks of coding agents and IDE assistants (repository content as an injection channel, command execution). Read OWASP's agentic AI threat guidance and the MCP specification's security guidance.
 - **Do:** build an agent with three tools (read file, fetch URL, send message). Use an injected web page to make it send a fake secret out. Work through an open vulnerable-agent project such as Damn Vulnerable LLM Agent.
 - **Output:** attack chain documented step by step.
 
 ### Week 7: Cloud identity and secrets
+
 - **Learn:** in one cloud (AWS or Azure): users vs roles, policies, least privilege, short-lived credentials vs long-lived keys, how a deployed app gets its permissions, secrets management, spend and rate limits on model APIs.
 - **Do:** audit one deployed project of your own. List every credential it holds and what each can do. Reduce each to the minimum, move secrets out of code and git history, and add spend alerts on model calls.
 - **Output:** a before/after permissions table.
 
 ### Week 8: Supply chain and automated red teaming
+
 - **Learn:** malicious model files (pickle deserialization) and why safetensors exists, compromised packages and model hubs, MITRE ATLAS tactics and techniques, turning manual attacks into repeatable tests.
 - **Do:** scan a downloaded model with an open-source model scanner (for example ModelScan). Run one or two open-source red-team tools (garak, PyRIT or promptfoo's red-team mode) against your week 4–6 apps. Map every finding to OWASP LLM Top 10 and ATLAS IDs.
 - **Output (publish, artifact 2):** GitHub repo with your vulnerable agent lab, the test suite and a findings report. The README must state that the app is intentionally vulnerable and must never be deployed. Send it to your reviewer.
@@ -99,27 +107,32 @@ Review this plan at day 45 and day 90. The field moves quickly; replace anything
 ## Phase 3: Defence and proof (weeks 9–13)
 
 ### Week 9: Defences that actually hold
+
 - **Learn:** least privilege for tools, human approval for consequential actions, isolating untrusted content from privileged actions (dual-LLM and capability-based designs such as the CaMeL paper), output encoding, egress controls, input and output classifiers and their limits.
 - **Do:** harden your week 6 agent. Rerun the week 8 test suite and record what still gets through.
 - **Output:** a "defence in depth for agents" diagram.
 
 ### Week 10: Threat modelling and secure design review
+
 - **Learn:** STRIDE applied to AI systems, trust-boundary analysis, abuse cases (including attackers using AI for phishing and impersonation against your users), Google's Secure AI Framework (SAIF) as a reference.
 - **Do:** write a full threat model for one of your real, deployed AI projects: assets, actors, entry points, threats, mitigations, residual risk.
 - **Output:** the threat model document (capstone section 1).
 
 ### Week 11: Monitoring, incident response and disclosure
+
 - **Learn:** what to log from LLM apps without logging private data, detecting abuse and exfiltration, security regression tests in CI, responding to a prompt-injection incident. Responsible disclosure: how to report a flaw you find in someone else's product (their security contact or bounty program, what to include, giving time to fix before publishing, never accessing more data than needed to prove the issue).
 - **Do:** add security tests to that project's CI and add basic abuse logging.
 - **Output:** the merged changes, and a `SECURITY.md` in the project saying how others should report issues to you.
 
 ### Week 12: Governance and engagement basics
+
 - **Learn (governance):** NIST AI Risk Management Framework and its generative AI profile, EU AI Act risk tiers, and the privacy law that applies to your users' data (PIPEDA in Canada, GDPR for EU users), at overview level.
 - **Learn (engagement basics):** what must exist before you review anyone else's system: written authorization from someone entitled to give it, a defined scope and time window, rules of engagement, a confidentiality agreement, how findings are handed over, and a view on liability. Get a lawyer's input before using any template commercially.
 - **Do:** map your capstone project's controls to the NIST AI RMF functions (Govern, Map, Measure, Manage) in one table. Draft a one-page scope and authorization template.
 - **Output:** the mapping table (capstone section 3) and the draft template.
 
 ### Week 13: Capstone and publish
+
 - **Do:** assemble the assessment of your own live project: threat model, test results before and after, fixes shipped, control mapping. Deploy the fixes. Publish the report.
 - **Output (publish, artifact 3):** the assessment at a public URL. Send it to your reviewer.
 

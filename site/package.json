@@ -1,0 +1,13 @@
+{
+  "name": "ai-security-90-days-site",
+  "private": true,
+  "type": "module",
+  "description": "Builds the learning site from the repository's Markdown.",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "BASE= node build.mjs && python3 -m http.server 8790 -d ../_site"
+  },
+  "dependencies": {
+    "marked": "14.1.4"
+  }
+}

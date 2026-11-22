@@ -43,3 +43,13 @@ Be direct and be kind. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 ## Licensing of contributions
 
 By contributing you agree that written content is released under CC BY 4.0 and code under MIT, as described in [LICENSE.md](LICENSE.md).
+
+## The website
+
+The site at https://aredwan-xyz.github.io/cybersec-roadmap/ is built from these Markdown files by `site/build.mjs` and deployed on every push to `main`. Edit the Markdown, not the site. To preview locally:
+
+```bash
+cd site && npm install && npm run preview
+```
+
+Then open http://localhost:8790. Running `node site/check.mjs http://localhost:8790` crawls it for broken internal links.

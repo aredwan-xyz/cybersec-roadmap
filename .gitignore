@@ -30,3 +30,6 @@ node_modules/
 
 # Private notes
 notes/private/
+
+# Site build output
+_site/

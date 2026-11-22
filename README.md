@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE.md"><img alt="License: CC BY 4.0 and MIT" src="https://img.shields.io/badge/license-CC%20BY%204.0%20%2B%20MIT-0f766e"></a>
+  <a href="https://github.com/aredwan-xyz/cybersec-roadmap/blob/main/LICENSE.md"><img alt="License: CC BY 4.0 and MIT" src="https://img.shields.io/badge/license-CC%20BY%204.0%20%2B%20MIT-0f766e"></a>
   <a href="https://github.com/aredwan-xyz/cybersec-roadmap/actions/workflows/links.yml"><img alt="Link check" src="https://github.com/aredwan-xyz/cybersec-roadmap/actions/workflows/links.yml/badge.svg"></a>
-  <a href="CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-2563eb"></a>
-  <a href="resources.md"><img alt="175 links checked" src="https://img.shields.io/badge/links-175%20checked-475569"></a>
+  <a href="https://github.com/aredwan-xyz/cybersec-roadmap/blob/main/CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-2563eb"></a>
+  <a href="https://github.com/aredwan-xyz/cybersec-roadmap/blob/main/resources.md"><img alt="175 links checked" src="https://img.shields.io/badge/links-175%20checked-475569"></a>
 </p>
 
 # AI Security in 90 Days
@@ -24,7 +24,7 @@ In 13 weeks, at about 10 hours a week, you build three small apps, break them, h
 ## The 90 days
 
 ```mermaid
-flowchart LR
+flowchart TB
     P0["Before week 1<br/>Read 20 job postings<br/>Book the hours"] --> P1
     P1["Weeks 1-4: FOUNDATIONS<br/>Web basics, how LLMs work,<br/>prompt injection"] --> P2
     P2["Weeks 5-8: ATTACK DEPTH<br/>RAG, agents, cloud identity,<br/>supply chain, red teaming"] --> P3
@@ -76,10 +76,7 @@ Not a builder yet? Start with [ROADMAP.md](ROADMAP.md), stage 0, and come back t
 
 ## The whole road
 
-```mermaid
-flowchart LR
-    S0["0<br/>Setup"] --> S1["1<br/>IT foundations"] --> S2["2<br/>Security<br/>fundamentals"] --> S3["3<br/>Hands-on core"] --> S4["4<br/>Specialize"] --> S5["5<br/>Professional<br/>depth"] --> S6["6<br/>Expert"]
-```
+**Setup → IT foundations → Security fundamentals → Hands-on core → Specialize → Professional depth → Expert**
 
 Job-ready in one track takes about 12 to 18 months of steady work. "Expert" takes about five years of real work. [The roadmap](ROADMAP.md) says so plainly and tells you what each stage should let you do.
 

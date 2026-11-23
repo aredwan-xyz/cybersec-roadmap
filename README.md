@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="AI Security in 90 Days: a builder's roadmap from first lab to published security assessment" width="100%">
+  <img src="assets/banner.svg" alt="Cyber Roadmap: learn cybersecurity from zero, in plain English" width="100%">
 </p>
 
 <p align="center">
@@ -9,19 +9,33 @@
   <a href="https://github.com/aredwan-xyz/cybersec-roadmap/blob/main/resources.md"><img alt="175 links checked" src="https://img.shields.io/badge/links-175%20checked-475569"></a>
 </p>
 
-# AI Security in 90 Days
+# Cyber Roadmap
 
-**You ship LLM features. Can you break them?**
+**Learn cybersecurity from zero, in plain English. Free, open source, and honest about what it takes.**
 
-Read it as a site, with search and navigation: **[aredwan-xyz.github.io/cybersec-roadmap](https://aredwan-xyz.github.io/cybersec-roadmap/)**
+Read it as a site, with quizzes, progress tracking and search: **[aredwan-xyz.github.io/cybersec-roadmap](https://aredwan-xyz.github.io/cybersec-roadmap/)**
 
-Most security roadmaps assume you want to become a SOC analyst or a penetration tester. This one is for people who already build with language models and want to learn how those systems fail, how to prove it in a lab, and how to fix it.
+> **The one rule.** Only test systems you own, practice sites built for it, or bug bounty targets within their published rules. See [SECURITY.md](SECURITY.md).
 
-In 13 weeks, at about 10 hours a week, you build three small apps, break them, harden them, and publish three pieces of work. The full beginner-to-expert cybersecurity roadmap is here too, for everything that comes before and after.
+## Start here: the beginner course
 
-> **The one rule.** Attack only systems you own, purpose-built labs, or bug bounty targets within their published scope. See [SECURITY.md](SECURITY.md).
+Fourteen short lessons, about 15 minutes each, no experience needed. Each one ends with a three-question quiz and something safe to try. **[Start the course →](learn/README.md)**
 
-## The 90 days
+| Part | Lessons |
+|---|---|
+| 1. Stay safe | [What cybersecurity is](learn/01-what-is-cybersecurity.md) · [Protect yourself first](learn/02-protect-yourself.md) · [Spot scams and phishing](learn/03-scams-and-phishing.md) |
+| 2. How it all works | [How the internet works](learn/04-how-the-internet-works.md) · [Networks and firewalls](learn/05-networks-and-firewalls.md) · [Computers, Linux and Windows](learn/06-computers-linux-windows.md) · [Cryptography without the math](learn/07-cryptography.md) |
+| 3. Attack and defense | [Malware and ransomware](learn/08-malware-and-ransomware.md) · [How websites get hacked](learn/09-web-security.md) · [How defenders catch attackers](learn/10-defense-and-detection.md) · [Ethical hacking](learn/11-ethical-hacking.md) |
+| 4. Where it is going | [Cloud security](learn/12-cloud-security.md) · [AI security](learn/13-ai-security.md) · [Jobs and how to start](learn/14-careers.md) |
+
+New words are explained in the [glossary](learn/glossary.md). Want to secure your own accounts today? Do the [personal security checkup](checklists/personal-security.md).
+
+## After the course
+
+- **[Beginner-to-expert roadmap](ROADMAP.md):** seven stages from your first lab to expert, with honest timelines.
+- **[AI security in 90 days](ai-security-90-days/README.md):** the advanced track for people who build with language models. In 13 weeks, at about 10 hours a week, you build three small apps, break them, harden them, and publish three pieces of work.
+
+## The 90-day AI security plan
 
 ```mermaid
 flowchart TB
@@ -55,24 +69,26 @@ Week 4 has you build this failure yourself, then fix it. That is the pattern for
 
 | | What | Why it is useful |
 |---|---|---|
+| 🎓 | [Beginner course](learn/README.md) | 14 plain-English lessons with quizzes. Start here if you are new |
+| 📖 | [Glossary](learn/glossary.md) | 100 cybersecurity words, one plain sentence each |
 | 🗓️ | [90-day AI security plan](ai-security-90-days/README.md) | Week by week: what to learn, what to build, what to publish. Includes exit criteria for when to stop |
 | 🧭 | [Beginner-to-expert roadmap](ROADMAP.md) | Seven stages from first VM to expert, with checkpoints and the eight specializations compared |
 | 📈 | [Market focus](market/focus-2026.md) | What employers are asking for, and the limits of that evidence |
 | 🔗 | [Resource library](resources.md) | 175 links by stage and week, each one requested and checked |
 | 🧪 | [Three build-it labs](labs/README.md) | Specs for a summarizer injection, a RAG access-control leak and an agent exfiltration. You write the code |
-| ✅ | [Checklists](checklists/) | LLM app review, agent and tool security, AI supply chain, web app basics, home lab setup |
+| ✅ | [Checklists](checklists/) | Personal security checkup, LLM app review, agent and tool security, AI supply chain, web app basics, home lab setup |
 | 📝 | [Templates](templates/) | Threat model, findings report, AI security assessment, lab write-up, scope and authorization |
 | ⚡ | [Cheatsheets](cheatsheets/) | LLM attack patterns, web vulnerabilities, networking, Linux |
 | 📊 | [Progress tracker](PROGRESS.md) | Fork the repo and tick your way through |
 
-## Start in five minutes
+## Start the AI security plan in five minutes
 
 1. **Fork this repo** so the progress tracker and notes are yours.
 2. Open the [90-day plan](ai-security-90-days/README.md) and do "Before week 1". It asks you to read 20 real job postings before you commit. Use [the template](templates/job-posting-review.md).
 3. Play [Gandalf](https://gandalf.lakera.ai) for 20 minutes. If you enjoy it, this field may suit you.
 4. Start week 1 and tick it off in [PROGRESS.md](PROGRESS.md).
 
-Not a builder yet? Start with [ROADMAP.md](ROADMAP.md), stage 0, and come back to the 90-day plan after stage 2.
+Not a builder yet? Take the [beginner course](learn/README.md), then [ROADMAP.md](ROADMAP.md) stage 0, and come back to the 90-day plan after stage 2.
 
 ## The whole road
 

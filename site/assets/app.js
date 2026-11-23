@@ -1,7 +1,8 @@
-/* AI Security in 90 Days — site behaviour. Progress is stored in this browser only. */
+/* Cyber Roadmap — site behaviour. Progress is stored in this browser only. */
 (function () {
   'use strict';
-  var SITE = window.SITE || { base: '', weeks: [], checklists: [] };
+  var SITE = window.SITE || { base: '', weeks: [], lessons: [], checklists: [] };
+  SITE.lessons = SITE.lessons || [];
   var KEY = 'ais90:v1';
   var doc = document;
   doc.documentElement.classList.add('js');
@@ -18,6 +19,8 @@
     S.weeks = S.weeks || {};
     S.checks = S.checks || {};
     S.artifacts = S.artifacts || {};
+    S.lessons = S.lessons || {};
+    S.quiz = S.quiz || {};
   }
   norm();
   function save() {
@@ -38,6 +41,61 @@
     return Object.keys(S.checks).filter(function (k) { return k.indexOf(p) === 0 && S.checks[k]; }).length;
   };
   var fmt = function (h) { return (Math.round(h * 10) / 10).toString(); };
+  var lessonsDone = function () { return SITE.lessons.filter(function (l) { return S.lessons[l.slug]; }).length; };
+  var quizRight = function (slug) {
+    var q = S.quiz[slug] || {};
+    return Object.keys(q).filter(function (k) { return k.charAt(0) !== '_' && q[k] === q['_a' + k]; }).length;
+  };
+  var quizAnswered = function (slug) {
+    return Object.keys(S.quiz[slug] || {}).filter(function (k) { return k.charAt(0) !== '_'; }).length;
+  };
+
+  // ---------------------------------------------------------- quizzes
+  function showAnswer(q, chosen) {
+    var answer = q.getAttribute('data-answer');
+    q.classList.toggle('answered', !!chosen);
+    $$('.opt', q).forEach(function (o) {
+      var k = o.getAttribute('data-opt');
+      o.classList.toggle('right', !!chosen && k === answer);
+      o.classList.toggle('wrong', !!chosen && k === chosen && k !== answer);
+      o.classList.toggle('picked', !!chosen && k === chosen);
+      o.disabled = !!chosen;
+    });
+    var why = $('.q-why', q);
+    if (why) {
+      why.hidden = !chosen;
+      var lab = $('[data-why-label]', why);
+      if (lab) lab.textContent = chosen === answer ? 'Correct.' : 'Not quite. The answer is ' + answer + '.';
+      why.className = 'q-why ' + (chosen === answer ? 'ok' : 'no');
+    }
+  }
+  function quizScore(quiz, picks) {
+    var qs = $$('.q', quiz);
+    var answered = 0, right = 0;
+    qs.forEach(function (q) {
+      var c = picks[q.getAttribute('data-q')];
+      if (!c) return;
+      answered++;
+      if (c === q.getAttribute('data-answer')) right++;
+    });
+    var out = $('[data-quiz-score]', quiz);
+    var reset = $('[data-quiz-reset]', quiz);
+    if (out && answered) {
+      out.innerHTML = answered < qs.length
+        ? right + ' of ' + answered + ' right so far'
+        : '<b>' + right + ' of ' + qs.length + ' right.</b> ' + (right === qs.length ? 'Nicely done.' : 'Read the explanations, then try again.');
+    }
+    if (reset) reset.hidden = answered < qs.length;
+    return { answered: answered, right: right, total: qs.length };
+  }
+  var heroPicks = {};
+  function quizPicks(quiz) {
+    if (quiz.hasAttribute('data-nostore')) return heroPicks;
+    var raw = S.quiz[quiz.getAttribute('data-quiz')] || {};
+    var picks = {};
+    Object.keys(raw).forEach(function (k) { if (k.charAt(0) !== '_') picks[k] = raw[k]; });
+    return picks;
+  }
 
   function toast(msg) {
     var t = $('.toast') || doc.body.appendChild(Object.assign(doc.createElement('div'), { className: 'toast', role: 'status' }));
@@ -113,18 +171,59 @@
       }
     });
 
-    // header pill
+    // lessons
+    var lt = SITE.lessons.length || 1;
+    var ld = lessonsDone();
+    $$('[data-lesson-status]').forEach(function (el) {
+      el.classList.toggle('is-done', !!S.lessons[el.getAttribute('data-lesson-status')]);
+    });
+    $$('[data-lesson-done]').forEach(function (b) {
+      b.setAttribute('aria-pressed', S.lessons[b.getAttribute('data-lesson-done')] ? 'true' : 'false');
+    });
+    var cb = $('[data-course-bar]');
+    if (cb) cb.style.width = (100 * ld) / lt + '%';
+    var ct = $('[data-course-text]');
+    if (ct) ct.textContent = ld + ' of ' + lt + ' lessons done';
+    var qRight = 0, qAnswered = 0;
+    SITE.lessons.forEach(function (l) { qRight += quizRight(l.slug); qAnswered += quizAnswered(l.slug); });
+    var qt = $('[data-quiz-total]');
+    if (qt) qt.textContent = qAnswered ? qRight + ' of ' + qAnswered + ' quiz answers right' : '';
+    $$('[data-quiz-label]').forEach(function (el) {
+      var s = el.getAttribute('data-quiz-label');
+      var a = quizAnswered(s);
+      el.textContent = a ? quizRight(s) + '/' + a + ' quiz' : '';
+    });
+    var nextLesson = SITE.lessons.filter(function (l) { return !S.lessons[l.slug]; })[0];
+    $$('[data-continue-lesson]').forEach(function (a) {
+      var arrow = a.querySelector('svg') ? a.querySelector('svg').outerHTML : '';
+      if (!ld) return;
+      if (nextLesson) { a.href = nextLesson.url; a.innerHTML = 'Continue: lesson ' + nextLesson.n + ' ' + arrow; }
+      else { a.href = SITE.base + '/roadmap/'; a.innerHTML = 'Course done: see the roadmap ' + arrow; }
+    });
+    $$('[data-quiz]').forEach(function (quiz) {
+      var picks = quizPicks(quiz);
+      $$('.q', quiz).forEach(function (q) { showAnswer(q, picks[q.getAttribute('data-q')]); });
+      quizScore(quiz, picks);
+    });
+
+    // header pill: course progress first, then the 90-day plan
+    var pillDone = ld, pillTotal = lt;
+    if (ld === lt && started) { pillDone = done; pillTotal = total; }
+    var any = ld > 0 || started;
     var ring = $('[data-pill-ring]');
-    if (ring) ring.style.strokeDashoffset = 94.25 * (1 - done / total);
+    if (ring) ring.style.strokeDashoffset = 94.25 * (1 - pillDone / pillTotal);
     var pill = $('[data-pill-text]');
-    if (pill) pill.textContent = started ? done + '/' + total : 'Progress';
+    if (pill) pill.textContent = any ? pillDone + '/' + pillTotal : 'Progress';
     var sm = $('[data-side-meter]');
-    if (sm) sm.textContent = started ? done + '/' + total : '';
+    if (sm) sm.textContent = any ? ld + '/' + lt : '';
 
     // progress page
     var ringBig = $('[data-ring]');
-    if (ringBig) ringBig.style.strokeDashoffset = 326.7 * (1 - done / total);
+    if (ringBig) ringBig.style.strokeDashoffset = 326.7 * (1 - ld / lt);
     var set = function (k, v) { var el = $('[data-stat="' + k + '"]'); if (el) el.textContent = v; };
+    set('lessons', ld);
+    set('quiz', qRight);
+    set('quiz-of', qAnswered ? 'of ' + qAnswered : '');
     set('weeks', done);
     set('hours', fmt(hours));
     set('artifacts', artifactsDone());
@@ -187,6 +286,8 @@
       save();
     } else if (t.matches('[data-res-filter]')) {
       filterResources(t.value);
+    } else if (t.matches('[data-g-filter]')) {
+      filterGlossary(t.value);
     }
   });
 
@@ -198,6 +299,40 @@
     if (t.tagName === 'LI' && !e.target.closest('a, input, label')) {
       var cb = t.querySelector(':scope > input.task, :scope > p > input.task');
       if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event('change', { bubbles: true })); }
+      return;
+    }
+    if (t.matches('.opt')) {
+      var q = t.closest('.q');
+      var quiz = t.closest('[data-quiz]');
+      if (!q || !quiz || q.classList.contains('answered')) return;
+      var pick = t.getAttribute('data-opt');
+      var qi = q.getAttribute('data-q');
+      if (quiz.hasAttribute('data-nostore')) {
+        heroPicks[qi] = pick;
+        showAnswer(q, pick);
+        quizScore(quiz, heroPicks);
+        return;
+      }
+      var slug = quiz.getAttribute('data-quiz');
+      var rec = S.quiz[slug] || (S.quiz[slug] = {});
+      rec[qi] = pick;
+      rec['_a' + qi] = q.getAttribute('data-answer');
+      var sc = quizScore(quiz, quizPicks(quiz));
+      if (sc.answered === sc.total && !S.lessons[slug] && SITE.lessons.some(function (l) { return l.slug === slug; })) {
+        S.lessons[slug] = 1;
+        toast('Quiz done: ' + sc.right + ' of ' + sc.total + '. Lesson marked done.');
+      }
+      save();
+      return;
+    } else if (t.matches('[data-quiz-reset]')) {
+      delete S.quiz[t.getAttribute('data-quiz-reset')];
+      save();
+      return;
+    } else if (t.matches('[data-lesson-done]')) {
+      var ls = t.getAttribute('data-lesson-done');
+      if (S.lessons[ls]) delete S.lessons[ls]; else S.lessons[ls] = 1;
+      save();
+      if (S.lessons[ls]) toast('Lesson done. ' + (lessonsDone() === SITE.lessons.length ? 'That is the whole course!' : 'On to the next one.'));
       return;
     }
     if (t.matches('[data-week-done]')) {
@@ -238,7 +373,7 @@
       var out = new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' });
       var l = doc.createElement('a');
       l.href = URL.createObjectURL(out);
-      l.download = 'ai-security-90-days-progress.json';
+      l.download = 'cyber-roadmap-progress.json';
       doc.body.appendChild(l); l.click(); l.remove();
     } else if (t.matches('[data-reset-all]')) {
       if (!confirm('Erase all progress saved in this browser? Export a backup first if you want to keep it.')) return;
@@ -320,6 +455,51 @@
     var empty = $('[data-res-empty]');
     if (empty) empty.hidden = !(terms.length && !shown);
   }
+  // ---------------------------------------------------------- glossary filter
+  function filterGlossary(q) {
+    var terms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var shown = 0;
+    $$('[data-g]').forEach(function (el) {
+      var hay = el.getAttribute('data-g');
+      var ok = terms.every(function (t) { return hay.indexOf(t) !== -1; });
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    $$('[data-g-letter]').forEach(function (s) { s.hidden = !$$('[data-g]', s).some(function (e) { return !e.hidden; }); });
+    var c = $('[data-g-count]');
+    if (c) c.textContent = shown + (terms.length ? ' match' + (shown === 1 ? '' : 'es') : ' words');
+    var empty = $('[data-g-empty]');
+    if (empty) empty.hidden = shown > 0;
+  }
+  if ($('[data-g-filter]')) filterGlossary('');
+
+  // ---------------------------------------------------------- plain-English definitions
+  var tip = null;
+  function showTip(el) {
+    if (!tip) {
+      tip = doc.body.appendChild(Object.assign(doc.createElement('div'), { className: 'term-tip', role: 'tooltip', id: 'term-tip' }));
+    }
+    tip.innerHTML = '<b></b><span></span>';
+    tip.firstChild.textContent = el.textContent;
+    tip.lastChild.textContent = el.getAttribute('data-def');
+    tip.classList.add('show');
+    el.setAttribute('aria-describedby', 'term-tip');
+    var r = el.getBoundingClientRect();
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    var x = Math.max(12, Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 12));
+    var y = r.top - h - 10;
+    tip.classList.toggle('below', y < 70);
+    if (y < 70) y = r.bottom + 10;
+    tip.style.left = x + 'px';
+    tip.style.top = y + window.scrollY + 'px';
+  }
+  function hideTip() { if (tip) tip.classList.remove('show'); }
+  doc.addEventListener('mouseover', function (e) { var d = e.target.closest && e.target.closest('dfn.gl'); if (d) showTip(d); });
+  doc.addEventListener('mouseout', function (e) { if (e.target.closest && e.target.closest('dfn.gl')) hideTip(); });
+  doc.addEventListener('focusin', function (e) { if (e.target.matches && e.target.matches('dfn.gl')) showTip(e.target); });
+  doc.addEventListener('focusout', function (e) { if (e.target.matches && e.target.matches('dfn.gl')) hideTip(); });
+  window.addEventListener('scroll', hideTip, { passive: true });
+
   if ($('[data-res-filter]')) {
     var q0 = new URLSearchParams(location.search).get('q');
     if (q0) $('[data-res-filter]').value = q0;
@@ -372,7 +552,7 @@
     var start = Math.max(0, i - 50);
     return (start ? '…' : '') + x.slice(start, start + 170) + (x.length > start + 170 ? '…' : '');
   }
-  var SUGGEST = ['Week 1', 'prompt injection', 'lethal trifecta', 'threat model', 'RAG', 'MCP', 'Burp Suite', 'Security+'];
+  var SUGGEST = ['phishing', 'password manager', 'firewall', 'ransomware', 'VPN', 'prompt injection', 'Security+', 'jobs'];
   function renderResults(q) {
     var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
     if (!terms.length) {
@@ -389,7 +569,9 @@
         else if (e.tl.indexOf(t) !== -1) score += 8;
         score += Math.min(3, e.h.split(t).length - 1);
       });
-      if (e.k === 'Week') score += 3;
+      if (e.k === 'Lesson') score += 5;
+      if (e.k === 'Term') score += 4;
+      if (e.k === 'Week') score += 2;
       if (e.k === 'Resource') score -= 1;
       res.push([score, e]);
     });
